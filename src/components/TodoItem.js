@@ -1,4 +1,5 @@
 import React from "react";
+import { useRole } from "./RoleContextProvider";
 
 const TodoItem = ({ handleChangeProps, deleteTodoProps, todo }) => {
   const completedStyle = {
@@ -8,8 +9,9 @@ const TodoItem = ({ handleChangeProps, deleteTodoProps, todo }) => {
     textDecoration: "line-through",
   };
 
+  const { roles, role } = useRole();
   const { completed, id, title, priority } = todo;
-
+  console.log(roles[role].write);
   return (
     <>
       <li className="todo-item">
@@ -17,6 +19,7 @@ const TodoItem = ({ handleChangeProps, deleteTodoProps, todo }) => {
           type="checkbox"
           checked={completed}
           onChange={() => handleChangeProps(id)}
+          style={{ visibility: roles[role].write ? "visible" : "hidden" }}
         />
         <span className="todo-title" style={completed ? completedStyle : null}>
           {title}
@@ -27,7 +30,12 @@ const TodoItem = ({ handleChangeProps, deleteTodoProps, todo }) => {
         >
           Priority - {priority}
         </span>
-        <button onClick={() => deleteTodoProps(id)}>Delete</button>
+        <button
+          onClick={() => deleteTodoProps(id)}
+          style={{ visibility: roles[role].delete ? "visible" : "hidden" }}
+        >
+          Delete
+        </button>
       </li>
     </>
   );
