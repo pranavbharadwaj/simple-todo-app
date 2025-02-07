@@ -45,9 +45,14 @@ body {
   list-style-type: none;
   padding: 17px 0px;
   border-bottom: 1px solid #eaeaea;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .todo-item input {
   margin-right: 15px;
+  width: 10%;
 }
 .todo-item button {
   background: #d35e0f;
@@ -57,4 +62,13 @@ body {
   cursor: pointer;
   float: right;
   outline: none;
+  width: 10%;
+}
+
+.todo-priority {
+  width: 20%;
+}
+
+.todo-title {
+  width: 60%;
 }

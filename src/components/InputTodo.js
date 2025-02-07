@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 
 const InputTodo = ({ addTodoProps }) => {
-  const [input, setInput] = useState({ title: "" });
+  const [input, setInput] = useState({ title: "", priority: "Low" });
 
   const onChange = (e) => {
-    setInput({
-      [e.target.name]: e.target.value,
+    let { name, value } = e.target;
+    setInput((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodoProps(input.title);
+    addTodoProps(input);
     setInput({
       title: "",
+      priority: "Low",
     });
   };
 
@@ -27,7 +32,19 @@ const InputTodo = ({ addTodoProps }) => {
           value={input.title}
           name="title"
           onChange={onChange}
+          required
         />
+        <select
+          className="priority-dropdown"
+          name="priority"
+          onChange={onChange}
+          defaultValue="Low"
+        >
+          <option value="High">High</option>
+          <option value="Med">Med</option>
+          <option value="Low">Low</option>
+        </select>
+
         <input type="submit" className="input-submit" value="Submit" />
       </form>
     </>

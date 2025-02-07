@@ -8,7 +8,7 @@ const TodoItem = ({ handleChangeProps, deleteTodoProps, todo }) => {
     textDecoration: "line-through",
   };
 
-  const { completed, id, title } = todo;
+  const { completed, id, title, priority } = todo;
 
   return (
     <>
@@ -18,8 +18,16 @@ const TodoItem = ({ handleChangeProps, deleteTodoProps, todo }) => {
           checked={completed}
           onChange={() => handleChangeProps(id)}
         />
+        <span className="todo-title" style={completed ? completedStyle : null}>
+          {title}
+        </span>
+        <span
+          className="todo-priority"
+          style={completed ? completedStyle : null}
+        >
+          Priority - {priority}
+        </span>
         <button onClick={() => deleteTodoProps(id)}>Delete</button>
-        <span style={completed ? completedStyle : null}>{title}</span>
       </li>
     </>
   );

@@ -13,18 +13,21 @@ const TodoContainer = () => {
         id: uuidv4(),
         title: "Setup development environment",
         completed: true,
+        priority: "High",
       },
       {
         // id: uuid.v4(),
         id: uuidv4(),
         title: "Develop website and add content",
         completed: false,
+        priority: "Med",
       },
       {
         // id: uuid.v4(),
         id: uuidv4(),
         title: "Deploy to live server",
         completed: false,
+        priority: "Low",
       },
     ],
   });
@@ -54,8 +57,9 @@ const TodoContainer = () => {
     const newTodo = {
       // id: uuid.v4(),
       id: uuidv4(),
-      title: data,
+      title: data.title,
       completed: false,
+      priority: data.priority,
     };
     setTodoItems({
       todos: [...todoItems.todos, newTodo],
